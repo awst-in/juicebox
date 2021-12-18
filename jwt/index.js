@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
 
-const token = jwt.sign({ id: 3, username: 'joshua' }, 'server secret', { expiresIn: '1w' });
+const token = jwt.sign({ id: 1, username: 'albert' }, process.env.JWT_SECRET, { expiresIn: '1w' });
 
-// token;
+token;
 
-const recoveredData = jwt.verify(token, 'server secret');
+const recoveredData = jwt.verify(token, process.env.JWT_SECRET);
 
 recoveredData;
 
-jwt.verify(token, 'server secret');
+jwt.verify(token, process.env.JWT_SECRET);
 
 module.exports = {
   token,

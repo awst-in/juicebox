@@ -1,7 +1,6 @@
 const express = require('express');
-const token = require('../jwt');
+const { token, jwt } = require('../jwt');
 const usersRouter = express.Router();
-const jwt = require('jsonwebtoken');
 const { getAllUsers, getUserByUsername, createUser } = require('../db');
 
 usersRouter.use((req, res, next) => {
@@ -21,7 +20,6 @@ usersRouter.get('/', async (req, res) => {
 usersRouter.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
 
-  // request must have both
   if (!username || !password) {
     next({
       name: 'MissingCredentialsError',
