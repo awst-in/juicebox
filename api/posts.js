@@ -110,4 +110,13 @@ postsRouter.get('/', async (req, res, next) => {
   }
 });
 
+postsRouter.get('/:postId', async (req, res, next) => {
+  try {
+    const post = await getPostById(req.params.postId);
+    res.send({ post });
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
 module.exports = postsRouter;
