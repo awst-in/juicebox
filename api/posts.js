@@ -60,6 +60,7 @@ postsRouter.patch('/:postId', requireUser, async (req, res, next) => {
     next({ name, message });
   }
 });
+
 postsRouter.delete('/:postId', requireUser, async (req, res, next) => {
   try {
     const post = await getPostById(req.params.postId);
@@ -98,7 +99,7 @@ postsRouter.get('/', async (req, res, next) => {
     const allPosts = await getAllPosts();
 
     const posts = allPosts.filter((post) => {
-      return post.active || (req.user && post.author.id === req.user.id);
+      return post.active.author || (req.user && post.author.id === req.user.id);
     });
 
     res.send({
