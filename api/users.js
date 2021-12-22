@@ -18,6 +18,16 @@ usersRouter.get('/', async (req, res) => {
   });
 });
 
+usersRouter.get('/:userId', async (req, res, next) => {
+  try {
+    const userId = await getUserById(req.params.userId);
+    res.send({
+      userId,
+    });
+  } catch ({ name, message }) {
+    ({ name, message });
+  }
+});
 usersRouter.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
 
