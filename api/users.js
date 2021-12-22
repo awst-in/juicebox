@@ -20,7 +20,7 @@ usersRouter.get('/', async (req, res) => {
 
 usersRouter.get('/:userId', async (req, res, next) => {
   try {
-    const userId = await getUserById(req.params.userId);
+    const userId = await getUserById(userId);
     res.send({
       userId,
     });
