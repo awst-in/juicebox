@@ -25,7 +25,7 @@ usersRouter.get('/:userId', async (req, res, next) => {
       userId,
     });
   } catch ({ name, message }) {
-    ({ name, message });
+    next({ name, message });
   }
 });
 usersRouter.post('/login', async (req, res, next) => {
